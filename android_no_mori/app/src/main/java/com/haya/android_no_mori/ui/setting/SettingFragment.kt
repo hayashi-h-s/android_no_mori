@@ -1,4 +1,4 @@
-package com.haya.android_no_mori.ui.home
+package com.haya.android_no_mori.ui.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.haya.android_no_mori.R
-import com.haya.android_no_mori.databinding.FragmentHomeBinding
+import com.haya.android_no_mori.databinding.FragmentNotificationsBinding
 
-class HomeFragment : Fragment() {
+class SettingFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var settingViewModel: SettingViewModel
+    private var _binding: FragmentNotificationsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,15 +23,15 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View {
+        settingViewModel =
+            ViewModelProvider(this).get(SettingViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textNotifications
+        settingViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

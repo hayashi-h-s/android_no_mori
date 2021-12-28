@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">android_no_mori</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <!-- sample_app_list -->
+    <string name="title_sample_app">サンプル</string>
+
+    <string name="title_post">投稿</string>
+
+    <!-- setting -->
+    <string name="title_setting">設定</string>
 </resources>
