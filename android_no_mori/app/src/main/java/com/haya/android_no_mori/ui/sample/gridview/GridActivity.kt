@@ -21,6 +21,11 @@ class GridActivity : AppCompatActivity() {
             Animal(R.drawable.dog, "イヌ"),
             Animal(R.drawable.gorilla, "ゴリラ"),
             Animal(R.drawable.horse, "ウマ"),
+            Animal(R.drawable.lion, "ライオン"),
+            Animal(R.drawable.cat, "ネコ"),
+            Animal(R.drawable.dog, "イヌ"),
+            Animal(R.drawable.gorilla, "ゴリラ"),
+            Animal(R.drawable.horse, "ウマ"),
             Animal(R.drawable.lion, "ライオン")
         )
 
