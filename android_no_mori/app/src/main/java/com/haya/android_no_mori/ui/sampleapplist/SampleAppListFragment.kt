@@ -1,17 +1,17 @@
 package com.haya.android_no_mori.ui.sampleapplist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.haya.android_no_mori.MainActivity
 import com.haya.android_no_mori.databinding.FragmentSampleAppListBinding
+import com.haya.android_no_mori.ui.sample.gridview.GridActivity
 
 class SampleAppListFragment : Fragment() {
-
     private lateinit var sampleAppListViewModel: SampleAppListViewModel
     private var _binding: FragmentSampleAppListBinding? = null
 
@@ -24,15 +24,12 @@ class SampleAppListFragment : Fragment() {
     ): View {
         sampleAppListViewModel =
             ViewModelProvider(this).get(SampleAppListViewModel::class.java)
-
         _binding = FragmentSampleAppListBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        sampleAppListViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding.transitionGridSampleViewButton.setOnClickListener {
+            val intent = Intent(activity?.application, GridActivity::class.java)
+            startActivity(intent)
+        }
+        return binding.root
     }
 
     override fun onDestroyView() {
