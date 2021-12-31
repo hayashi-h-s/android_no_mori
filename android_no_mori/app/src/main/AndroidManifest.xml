@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".ui.sample.gridview.GridActivity"
+            android:name=".ui.sample.gridview.SampleGridActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

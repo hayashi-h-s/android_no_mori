@@ -8,7 +8,7 @@ import com.haya.android_no_mori.R
 import com.haya.android_no_mori.databinding.ActivityGridBinding
 import com.haya.android_no_mori.ui.sample.gridview.model.Animal
 
-class GridActivity : AppCompatActivity() {
+class SampleGridActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGridBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class GridActivity : AppCompatActivity() {
             Animal(R.drawable.lion, "ライオン")
         )
 
-        binding.recyclerView.adapter = GridAdapter(animalList)
+        binding.recyclerView.adapter = SampleGridAdapter(animalList)
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
     }
 }

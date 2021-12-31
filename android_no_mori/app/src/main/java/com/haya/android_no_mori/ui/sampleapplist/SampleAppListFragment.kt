@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.haya.android_no_mori.MainActivity
 import com.haya.android_no_mori.databinding.FragmentSampleAppListBinding
-import com.haya.android_no_mori.ui.sample.gridview.GridActivity
+import com.haya.android_no_mori.ui.sample.gridview.SampleGridActivity
 
 class SampleAppListFragment : Fragment() {
     private lateinit var sampleAppListViewModel: SampleAppListViewModel
@@ -26,7 +25,7 @@ class SampleAppListFragment : Fragment() {
             ViewModelProvider(this).get(SampleAppListViewModel::class.java)
         _binding = FragmentSampleAppListBinding.inflate(inflater, container, false)
         binding.transitionGridSampleViewButton.setOnClickListener {
-            val intent = Intent(activity?.application, GridActivity::class.java)
+            val intent = Intent(activity?.application, SampleGridActivity::class.java)
             startActivity(intent)
         }
         return binding.root

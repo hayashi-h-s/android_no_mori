@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.haya.android_no_mori.R
 import com.haya.android_no_mori.ui.sample.gridview.model.Animal
 
-class GridAdapter(private val animalList: List<Animal>) :
-    RecyclerView.Adapter<GridAdapter.ViewHolder>() {
+class SampleGridAdapter(private val animalList: List<Animal>) :
+    RecyclerView.Adapter<SampleGridAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.image_view)
         val name: TextView = view.findViewById(R.id.text_view)
