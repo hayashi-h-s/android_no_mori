@@ -1,4 +1,4 @@
-package com.haya.android_no_mori.ui.sample.onboarding
+package com.haya.android_no_mori.ui.sample.onboarding.viewpager
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.haya.android_no_mori.databinding.FragmentSampleOnBoardingBinding
-import com.haya.android_no_mori.ui.sample.onboarding.viewpager.FirstScreen
-import com.haya.android_no_mori.ui.sample.onboarding.viewpager.SecondScreen
-import com.haya.android_no_mori.ui.sample.onboarding.viewpager.ThirdScreen
-import com.haya.android_no_mori.ui.sample.onboarding.viewpager.ViewPagerAdapter
 
-class SampleOnBoardingFragment : Fragment() {
+class ViewPagerFragment : Fragment() {
     private var _binding: FragmentSampleOnBoardingBinding? = null
     private val binding get() = _binding!!
 
