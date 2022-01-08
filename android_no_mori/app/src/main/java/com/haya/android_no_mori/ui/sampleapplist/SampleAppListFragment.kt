@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.haya.android_no_mori.databinding.FragmentSampleAppListBinding
+import com.haya.android_no_mori.ui.sample.firestore.FireStoreSampleActivity
 import com.haya.android_no_mori.ui.sample.gridview.SampleGridActivity
 
 class SampleAppListFragment : Fragment() {
@@ -26,6 +27,10 @@ class SampleAppListFragment : Fragment() {
         _binding = FragmentSampleAppListBinding.inflate(inflater, container, false)
         binding.transitionGridSampleViewButton.setOnClickListener {
             val intent = Intent(activity?.application, SampleGridActivity::class.java)
+            startActivity(intent)
+        }
+        binding.transitionFirestoreSampleScreenButton.setOnClickListener {
+            val intent = Intent(activity?.application, FireStoreSampleActivity::class.java)
             startActivity(intent)
         }
         return binding.root
