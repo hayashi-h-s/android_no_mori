@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.haya.android_no_mori.R
 import com.haya.android_no_mori.databinding.FragmentFirstScreenBinding
 
 class FirstScreen : Fragment() {
@@ -18,10 +16,6 @@ class FirstScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFirstScreenBinding.inflate(inflater, container, false)
-        val viewPager =  activity?.findViewById<ViewPager2>(R.id.view_pager)
-        binding.next.setOnClickListener {
-            viewPager?.currentItem = SECOND_VIEW_PAGER_NUMBER
-        }
         return binding.root
     }
 

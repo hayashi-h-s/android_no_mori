@@ -13,5 +13,7 @@
     <!-- sample_apps <start> -->
 
     <!-- on_boarding -->
+    <string name="text_next">Next</string>
+    <string name="text_finish">Finish</string>
 
 </resources>
