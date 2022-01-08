@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "610622901594",
+    "project_id": "android-no-mori",
+    "storage_bucket": "android-no-mori.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610622901594:android:29433deae4b8f56e247763",
+        "android_client_info": {
+          "package_name": "com.haya.android_no_mori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610622901594-6sgjtq3ban7a7g8e3fe9k8dqe7vaa9h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7s59190Es6SHeIMtQGxdI3Wqg7BHLb80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610622901594-6sgjtq3ban7a7g8e3fe9k8dqe7vaa9h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
