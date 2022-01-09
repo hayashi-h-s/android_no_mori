@@ -2,7 +2,6 @@ package com.haya.android_no_mori.ui.sample.onboarding.viewpager
 
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +32,7 @@ class ViewPagerFragment : Fragment() {
         binding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                setupIndicator(position)
+                changeIndicatorColor(position)
                 changePagerChangeButtonText(position)
             }
         })
@@ -46,7 +45,7 @@ class ViewPagerFragment : Fragment() {
     }
 
     private fun setUpView() {
-        setupIndicator(0)
+        setupIndicator()
         val fragmentList = arrayListOf(
             FirstScreen(),
             SecondScreen(),
@@ -70,7 +69,24 @@ class ViewPagerFragment : Fragment() {
         }
     }
 
-    private fun setupIndicator(position: Int) {
+    private fun changeIndicatorColor(position: Int) {
+        for (i in dots.indices) {
+            dots[i]?.setTextColor(
+                resources.getColor(
+                    R.color.light_gray,
+                    activity?.applicationContext?.theme
+                )
+            )
+        }
+        dots[position]?.setTextColor(
+            resources.getColor(
+                R.color.gray,
+                activity?.applicationContext?.theme
+            )
+        )
+    }
+
+    private fun setupIndicator() {
         dots = arrayOfNulls(MAX_INDICATOR_NUM)
         binding.indicatorLayout.removeAllViews()
         for (i in dots.indices) {
@@ -85,7 +101,7 @@ class ViewPagerFragment : Fragment() {
             )
             binding.indicatorLayout.addView(dots[i])
         }
-        dots[position]?.setTextColor(
+        dots[0]?.setTextColor(
             resources.getColor(
                 R.color.gray,
                 activity?.applicationContext?.theme
