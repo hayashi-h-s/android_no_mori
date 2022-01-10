@@ -8,8 +8,12 @@
         <entry key="app/src/main/res/drawable/ic_delivery.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_payment.xml" value="0.1" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <entry key="app/src/main/res/layout/activity_fire_store_sample.xml" value="0.25" />
+>>>>>>> develop
+=======
+        <entry key="app/src/main/res/layout/activity_fire_store_sample.xml" value="0.22" />
 >>>>>>> develop
         <entry key="app/src/main/res/layout/activity_grid.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24322916666666666" />

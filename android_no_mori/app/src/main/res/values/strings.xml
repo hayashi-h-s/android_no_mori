@@ -2,12 +2,10 @@
     <string name="app_name">android_no_mori</string>
     <!-- sample_app_list -->
     <string name="title_sample_app">サンプル</string>
-
     <string name="title_post">投稿</string>
 
     <!-- setting -->
     <string name="title_setting">設定</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- sample_apps <start> -->
@@ -15,5 +13,4 @@
     <!-- on_boarding -->
     <string name="text_next">Next</string>
     <string name="text_finish">Finish</string>
-
 </resources>
