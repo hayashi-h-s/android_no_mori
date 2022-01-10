@@ -2,8 +2,8 @@ package com.haya.android_no_mori.ui.sample.firestore
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.haya.android_no_mori.ui.sample.firestore.model.SampleUser
 
 //class MainViewModel(private val repository: SampleFireStoreRepository) : ViewModel() {
@@ -23,12 +23,12 @@ class FireStoreSampleViewModel(application: Application) : AndroidViewModel(appl
         repository = SampleFireStoreRepository.instance
     }
 
-//    fun getSampleUser(documentId: String): LiveData<SampleUser> {
-    fun getSampleUser(documentId: String) {
+    fun getSampleUser(documentId: String): LiveData<SampleUser> {
+//    fun getSampleUser(documentId: String) {
 
-        sampleUser = repository!!.getSampleUser(documentId) as MutableLiveData<SampleUser>
+//        sampleUser = repository!!.getSampleUser(documentId) as MutableLiveData<SampleUser>
 
-//        return repository!!.getSampleUser(documentId)
+        return repository!!.getSampleUser(documentId)
     }
 
 //    fun onUndoDeleteClick(documentId: String): LiveData<SampleUser> = viewModelScope.launch {

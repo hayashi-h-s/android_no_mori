@@ -17,7 +17,7 @@ class FireStoreSampleActivity : AppCompatActivity() {
         binding = ActivityFireStoreSampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this).get(FireStoreSampleViewModel::class.java)
-        viewModel.sampleUser.observe(this) { sampleUser ->
+        viewModel.getSampleUser("test").observe(this) { sampleUser ->
             if (sampleUser != null) {
                 binding.userName.text = sampleUser.name
                 binding.userAge.text = sampleUser.age.toString()
