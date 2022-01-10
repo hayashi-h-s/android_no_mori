@@ -2,12 +2,9 @@
     <string name="app_name">android_no_mori</string>
     <!-- sample_app_list -->
     <string name="title_sample_app">サンプル</string>
-
     <string name="title_post">投稿</string>
 
     <!-- setting -->
     <string name="title_setting">設定</string>
 
-    <!-- FireStoreSampleActivity -start- -->
-    <!-- FireStoreSampleActivity -end- -->
 </resources>
