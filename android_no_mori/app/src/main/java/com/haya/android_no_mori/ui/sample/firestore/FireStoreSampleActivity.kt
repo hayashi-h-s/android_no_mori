@@ -19,7 +19,6 @@ class FireStoreSampleActivity : AppCompatActivity() {
         binding = ActivityFireStoreSampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         db = FirebaseFirestore.getInstance()
-
         binding.registerButton.setOnClickListener {
             if (binding.nameEt.text.toString().isEmpty() || binding.ageEt.text.toString()
                     .isEmpty()
@@ -37,57 +36,11 @@ class FireStoreSampleActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     binding.progressLayout.visibility = View.GONE
                     Toast.makeText(this, "登録成功", Toast.LENGTH_SHORT).show()
-
-
-                    Log.d("TAG", "Logs = it.id = ${it.id}");
                     setSampleUserInformation(it.id)
                 }.addOnFailureListener {
                     Toast.makeText(this, "登録失敗", Toast.LENGTH_SHORT).show()
                 }
         }
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-        val docRef = db!!.collection("user").document(
-            "bPG8HXne0Hv5WLbweJR6"
-        )
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(
-                        "TAG",
-                        "DocumentSnapshot data: ${document.data} = document.data.toString() + ${document.data.toString()}"
-                    )
-                } else {
-                    Log.d("TAG", "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("TAG", "get failed with ", exception)
-            }
-//
-//        db!!.collection("user").get()
-//            .addOnCompleteListener { task ->
-////                list.clear()
-//                for (snapshot in task.result) {
-//                    Log.d("TAG", "Logs = ");
-////                    val model = Model(
-////                        snapshot.getString("name"),
-////                        snapshot.getString("age")
-////                    )
-////                    list.add(model)
-//                }
-////                adapter.notifyDataSetChanged()
-//            }.addOnFailureListener {
-//                Toast.makeText(
-//                    this,
-//                    "Oops ... something went wrong",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
     }
 
     // Get single data from FireStore
@@ -96,12 +49,9 @@ class FireStoreSampleActivity : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    Log.d(
-                        "TAG",
-                        "DocumentSnapshot data: ${document.data} = document.data.toString() + ${document.data.toString()}"
-                    )
-//                    val user = document.toObject()
-
+                    val user = document.toObject(SampleUser::class.java) //Commentary: Change the retrieved data to SampleUserModel
+                    binding.userName.text = user?.name
+                    binding.userAge.text = user?.age.toString()
                 } else {
                     Log.d("TAG", "No such document")
                 }
