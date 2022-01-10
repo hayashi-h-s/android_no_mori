@@ -7,4 +7,7 @@
 
     <!-- setting -->
     <string name="title_setting">設定</string>
+
+    <!-- FireStoreSampleActivity -start- -->
+    <!-- FireStoreSampleActivity -end- -->
 </resources>
