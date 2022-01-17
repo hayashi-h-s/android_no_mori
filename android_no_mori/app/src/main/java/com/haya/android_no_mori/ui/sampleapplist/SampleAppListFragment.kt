@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.haya.android_no_mori.databinding.FragmentSampleAppListBinding
+import com.haya.android_no_mori.ui.sample.datastore.SampleDataStoreActivity
 import com.haya.android_no_mori.ui.sample.firestore.FireStoreSampleActivity
 import com.haya.android_no_mori.ui.sample.gridview.SampleGridActivity
 import com.haya.android_no_mori.ui.sample.onboarding.SampleOnBoardingActivity
@@ -36,6 +37,10 @@ class SampleAppListFragment : Fragment() {
         }
         binding.transitionFirestoreSampleScreenButton.setOnClickListener {
             val intent = Intent(activity?.application, FireStoreSampleActivity::class.java)
+            startActivity(intent)
+        }
+        binding.transitionDatastoreSampleActivityButton.setOnClickListener {
+            val intent = Intent(activity?.application, SampleDataStoreActivity::class.java)
             startActivity(intent)
         }
         return binding.root
