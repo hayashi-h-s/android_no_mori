@@ -20,7 +20,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 val TEXT_KEY = stringPreferencesKey("edit_text")
 val EDIT_TEXT_LENGTH_KEY = intPreferencesKey("edit_text_length")
 val IS_EDIT_TEXT_LENGTH_FIVE_CHARACTERS_OR_MORE = intPreferencesKey("is_edit_text_length_five_characters_or_more")
-// TODO: 5文字以上の場合 true
+// TODO: 5文字以上の場合  true
 
 class SampleDataStoreActivity : AppCompatActivity() {
     private var _binding: ActivitySampleDataStoreBinding? = null
