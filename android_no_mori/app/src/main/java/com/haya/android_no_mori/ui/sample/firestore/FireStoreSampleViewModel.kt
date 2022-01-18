@@ -1,20 +1,13 @@
 package com.haya.android_no_mori.ui.sample.firestore
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.haya.android_no_mori.ui.sample.firestore.model.SampleUser
+import kotlinx.coroutines.launch
 
-//class MainViewModel(private val repository: SampleFireStoreRepository) : ViewModel() {
-//
-//    fun getAllPosts() = repository.getAllPosts()
-//
-//    fun addPost(post: Post) = repository.add(post)
-//}
-
-
-class FireStoreSampleViewModel(application: Application) : AndroidViewModel(application) {
+class FireStoreSampleViewModel : ViewModel() {
     private var repository: SampleFireStoreRepository? = null
 
     var sampleUser: MutableLiveData<SampleUser> = MutableLiveData()
@@ -26,8 +19,9 @@ class FireStoreSampleViewModel(application: Application) : AndroidViewModel(appl
     fun getSampleUser(documentId: String): LiveData<SampleUser> {
 //    fun getSampleUser(documentId: String) {
 
-//        sampleUser = repository!!.getSampleUser(documentId) as MutableLiveData<SampleUser>
+        repository!!.getSampleUser(documentId)
 
+//        sampleUser = repository!!.getSampleUser(documentId) as MutableLiveData<SampleUser>
         return repository!!.getSampleUser(documentId)
     }
 
@@ -37,7 +31,8 @@ class FireStoreSampleViewModel(application: Application) : AndroidViewModel(appl
 
     fun addSampleUser(sampleUser: SampleUser) {
 //        sampleUserData = sampleUser
-
-        repository?.addSampleUser(sampleUser)
+        viewModelScope.launch {
+            repository?.addSampleUser(sampleUser)
+        }
     }
 }

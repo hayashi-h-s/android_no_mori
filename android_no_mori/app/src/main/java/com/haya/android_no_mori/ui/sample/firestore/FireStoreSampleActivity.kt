@@ -16,7 +16,8 @@ class FireStoreSampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFireStoreSampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this).get(FireStoreSampleViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FireStoreSampleViewModel::class.java]
+
         viewModel.getSampleUser("test").observe(this) { sampleUser ->
             if (sampleUser != null) {
                 binding.userName.text = sampleUser.name

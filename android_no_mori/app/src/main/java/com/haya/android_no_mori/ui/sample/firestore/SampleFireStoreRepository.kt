@@ -6,11 +6,33 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.haya.android_no_mori.ui.sample.firestore.model.SampleUser
+import com.haya.android_no_mori.ui.sample.firestore.model.State
 
 class SampleFireStoreRepository  {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionRef: CollectionReference = db.collection("users")
+
+    private val mPostsCollection = FirebaseFirestore.getInstance().collection("users")
+
     private var sampleUser: MutableLiveData<SampleUser>? = null
+    private var state: MutableLiveData<State<SampleUser>>? = null
+
+//    fun getAllSampleUsers() = flow<State<List<SampleUser>>> {
+
+//        // ロード中
+//        emit(State.loading())
+//
+//        val snapshot = mPostsCollection.get().await()
+//        val posts = snapshot.toObjects(SampleUser::class.java)
+//
+//        // Emit success state with data
+//        emit(State.success(posts))
+//
+//    }.catch {
+//        // If exception is thrown, emit failed state along with message.
+//        emit(State.failed(it.message.toString()))
+//    }.flowOn(Dispatchers.IO)
+
 
     fun getSampleUser(documentId: String): LiveData<SampleUser> {
         if (sampleUser == null) {
