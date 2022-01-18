@@ -26,25 +26,6 @@ class SampleFireStoreRepository {
         // Emit loading state
         emit(State.loading())
 
-//        val postRef = mPostsCollection.add(user).await()
-
-        // Emit success state with post reference
-//        emit(State.success(postRef))
-
-    }.catch {
-        // If exception is thrown, emit failed state along with message.
-        emit(State.failed(it.message.toString()))
-    }.flowOn(Dispatchers.IO)
-
-
-
-    fun addFlowUser(user: SampleUser) = flow<State<DocumentReference>> {
-
-        Log.d("TAG", "Logs = ");
-
-        // Emit loading state
-        emit(State.loading())
-
         val postRef = mPostsCollection.add(user).await()
 
 //         Emit success state with post reference
