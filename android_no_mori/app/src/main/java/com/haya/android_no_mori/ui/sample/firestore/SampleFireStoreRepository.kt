@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.tasks.await
 
 class SampleFireStoreRepository {
 //    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -20,15 +21,16 @@ class SampleFireStoreRepository {
     private var sampleUser: MutableLiveData<SampleUser>? = null
 //    private var state: MutableLiveData<State<SampleUser>>? = null
 
-
     fun addSampleUser(user: SampleUser) = flow<State<DocumentReference>> {
 
-        // Emit loading state
+        Log.d("TAG","Logs = fun addSampleUser(user: SampleUser) = flow<State<DocumentReference>> {");
+
+        // Emit loading stat
         emit(State.loading())
 
-        val postRef = mPostsCollection.add(user).await()
+        val postRef = mPostsCollection.add(user).await() //右を追加で表示 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.5'
 
-//         Emit success state with post reference
+        // Emit success state with post reference
         emit(State.success(postRef))
 
     }.catch {
