@@ -15,6 +15,11 @@ class FireStoreSampleViewModel() : ViewModel() {
 
     fun addUser(user: SampleUser) = repository?.addSampleUser(user)
 
+
+
+
+
+
 //    fun getSampleUser(documentId: String): LiveData<SampleUser> {
 ////    fun getSampleUser(documentId: String) {
 //        repository!!.getSampleUser(documentId)

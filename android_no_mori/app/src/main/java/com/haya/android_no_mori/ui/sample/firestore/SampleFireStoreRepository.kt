@@ -1,6 +1,5 @@
 package com.haya.android_no_mori.ui.sample.firestore
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,23 +21,32 @@ class SampleFireStoreRepository {
 //    private var state: MutableLiveData<State<SampleUser>>? = null
 
     fun addSampleUser(user: SampleUser) = flow<State<DocumentReference>> {
-
-        Log.d("TAG","Logs = fun addSampleUser(user: SampleUser) = flow<State<DocumentReference>> {");
-
-        // Emit loading stat
         emit(State.loading())
-
         val postRef = mPostsCollection.add(user).await() //右を追加で表示 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.5'
-
-        // Emit success state with post reference
-        emit(State.success(postRef))
-
+        emit(State.success(user))
     }.catch {
         // If exception is thrown, emit failed state along with message.
         emit(State.failed(it.message.toString()))
     }.flowOn(Dispatchers.IO)
 
 
+//    fun addSampleUser(sampleUser: SampleUser, listener: TestListener): SampleUser? {
+//        var isSuccess = false
+//        db.collection("users")
+//            .add(sampleUser)
+//            .addOnSuccessListener {
+//                Log.d("TAG", "成功 Logs = ");
+////                getSampleUser(it.id)
+//                isSuccess = true
+//                listener.onSuccess()
+//            }.addOnFailureListener {
+//                Log.d("TAG", "失敗 Logs = ");
+//                //                    Toast.makeText(this, "登録失敗", Toast.LENGTH_SHORT).show()
+//                listener.onSuccess()
+//            }
+//        return if (isSuccess) sampleUser else null
+//    }
+//
 //    fun getSampleUser(documentId: String): LiveData<SampleUser> {
 //        if (sampleUser == null) {
 //            sampleUser = MutableLiveData()
@@ -61,23 +69,8 @@ class SampleFireStoreRepository {
 //        return sampleUser as MutableLiveData<SampleUser>
 //    }
 
-//    fun addSampleUser(sampleUser: SampleUser, listener: TestListener): SampleUser? {
-//        var isSuccess = false
-//        db.collection("users")
-//            .add(sampleUser)
-//            .addOnSuccessListener {
-//                Log.d("TAG", "成功 Logs = ");
-////                getSampleUser(it.id)
-//                isSuccess = true
-//                listener.onSuccess()
-//            }.addOnFailureListener {
-//                Log.d("TAG", "失敗 Logs = ");
-//                //                    Toast.makeText(this, "登録失敗", Toast.LENGTH_SHORT).show()
-//                listener.onSuccess()
-//            }
-//        return if (isSuccess) sampleUser else null
-//    }
-//
+
+
     companion object {
         private var mInstance: SampleFireStoreRepository? = null
         val instance: SampleFireStoreRepository?
