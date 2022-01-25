@@ -24,14 +24,14 @@ class FireStoreSampleActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[FireStoreSampleViewModel::class.java]
         binding.registerButton.setOnClickListener {
-            if (binding.nameEt.text.toString().isEmpty()
-                || binding.userId.text.toString().isEmpty()
+            if (binding.userNameEt.text.toString().isEmpty()
+                || binding.userIdEt.text.toString().isEmpty()
             ) {
                 Toast.makeText(this, "名前と年齢を入力してください", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val name = binding.nameEt.text.toString()
-            val userId = binding.userId.text.toString()
+            val name = binding.userNameEt.text.toString()
+            val userId = binding.userIdEt.text.toString()
             val sampleUser = SampleUser(name, userId)
             lifecycleScope.launch {
                 addUser(sampleUser)
@@ -48,9 +48,11 @@ class FireStoreSampleActivity : AppCompatActivity() {
                 is State.Success -> {
                     binding.progressLayout.isVisible = false
 
-                    print(" 【ログ】 ${javaClass.name} = state.data = ${state.data}")
-
                     showToast("データ追加完了 ")
+                    binding.userNameTv.text =  state.data?.name
+                    binding.userIdTv.text =  state.data?.id
+
+                    getAllUsers()
                 }
 
                 is State.Failed -> {
@@ -62,6 +64,32 @@ class FireStoreSampleActivity : AppCompatActivity() {
                             // TODO:Yesが押された時の挙動
                         }
                         .show()
+                }
+            }
+        }
+    }
+
+    private suspend fun getAllUsers() {
+        viewModel.getAllUsers()?.collect { state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.progressLayout.isVisible = true
+                }
+                is State.Success -> {
+                    binding.progressLayout.isVisible = false
+
+                    showToast("登録人数 = ${state.data.size}")
+                }
+
+                is State.Failed -> {
+//                    binding.progressLayout.isVisible = false
+//                    AlertDialog.Builder(this@FireStoreSampleActivity)
+//                        .setTitle("投稿に失敗しました")
+//                        .setMessage("通信状況を確認してください")
+//                        .setPositiveButton("OK") { dialog, which ->
+//                            // TODO:Yesが押された時の挙動
+//                        }
+//                        .show()
                 }
             }
         }

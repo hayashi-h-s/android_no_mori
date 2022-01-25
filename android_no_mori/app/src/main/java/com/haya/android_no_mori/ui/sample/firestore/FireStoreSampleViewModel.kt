@@ -15,7 +15,7 @@ class FireStoreSampleViewModel() : ViewModel() {
 
     fun addUser(user: SampleUser) = repository?.addSampleUser(user)
 
-
+    fun getAllUsers() = repository?.getAllUsers()
 
 
 
