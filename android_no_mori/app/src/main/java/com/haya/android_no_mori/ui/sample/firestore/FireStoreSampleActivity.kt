@@ -7,16 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.haya.android_no_mori.databinding.ActivityFireStoreSampleBinding
 import com.haya.android_no_mori.ui.sample.firestore.model.SampleUser
 import com.haya.android_no_mori.ui.sample.firestore.model.State
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
 class FireStoreSampleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFireStoreSampleBinding
     private lateinit var viewModel: FireStoreSampleViewModel
+    private var adapter: FireStoreSampleUserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,18 @@ class FireStoreSampleActivity : AppCompatActivity() {
                 addUser(sampleUser)
             }
         }
+
+        setRecyclerView()
+
+        lifecycleScope.launch {
+            getAllUsers()
+        }
+    }
+
+    private fun setRecyclerView() {
+//        adapter =  FireStoreSampleUserListAdapter()
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@FireStoreSampleActivity)
+//        adapter.
     }
 
     private suspend fun addUser(sampleUser: SampleUser) {
@@ -47,14 +60,10 @@ class FireStoreSampleActivity : AppCompatActivity() {
                 }
                 is State.Success -> {
                     binding.progressLayout.isVisible = false
-
-                    showToast("データ追加完了 ")
-                    binding.userNameTv.text =  state.data?.name
-                    binding.userIdTv.text =  state.data?.id
-
-                    getAllUsers()
+                    binding.userNameTv.text = state.data?.name
+                    binding.userIdTv.text = state.data?.id
+                    showToast("登録が成功しました")
                 }
-
                 is State.Failed -> {
                     binding.progressLayout.isVisible = false
                     AlertDialog.Builder(this@FireStoreSampleActivity)
@@ -76,9 +85,9 @@ class FireStoreSampleActivity : AppCompatActivity() {
                     binding.progressLayout.isVisible = true
                 }
                 is State.Success -> {
-                    binding.progressLayout.isVisible = false
 
-                    showToast("登録人数 = ${state.data.size}")
+
+                    binding.progressLayout.isVisible = false
                 }
 
                 is State.Failed -> {
@@ -89,7 +98,8 @@ class FireStoreSampleActivity : AppCompatActivity() {
 //                        .setPositiveButton("OK") { dialog, which ->
 //                            // TODO:Yesが押された時の挙動
 //                        }
-//                        .show()
+//                        .sho
+
                 }
             }
         }
