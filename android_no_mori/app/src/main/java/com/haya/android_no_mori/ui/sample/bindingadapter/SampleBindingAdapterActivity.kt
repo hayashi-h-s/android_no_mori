@@ -22,10 +22,10 @@ class SampleBindingAdapterActivity : AppCompatActivity() {
         binding.person = person
 
         binding.personChangeButton.setOnClickListener {
-            if (binding.userNameText.text == "名無 太郎") {
-                binding.person = Person("猫田 ニャン助", R.drawable.cat)
+            binding.person = if (binding.userNameText.text == "名無 太郎") {
+                Person("猫田 ニャン助", R.drawable.cat)
             } else {
-                binding.person = Person("名無 太郎", R.drawable.ic_user)
+                Person("名無 太郎", R.drawable.ic_user)
             }
 
         }
