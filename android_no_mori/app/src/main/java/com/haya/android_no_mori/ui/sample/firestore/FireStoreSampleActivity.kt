@@ -17,39 +17,34 @@ import kotlinx.coroutines.launch
 class FireStoreSampleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFireStoreSampleBinding
     private lateinit var viewModel: FireStoreSampleViewModel
-    private var adapter: FireStoreSampleUserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFireStoreSampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[FireStoreSampleViewModel::class.java]
+        setRecyclerView()
+        lifecycleScope.launch {
+            getAllUsers()
+        }
         binding.registerButton.setOnClickListener {
             if (binding.userNameEt.text.toString().isEmpty()
-                || binding.userIdEt.text.toString().isEmpty()
+                || binding.userFavoriteNumEt.text.toString().isEmpty()
             ) {
                 Toast.makeText(this, "名前と年齢を入力してください", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val name = binding.userNameEt.text.toString()
-            val userId = binding.userIdEt.text.toString()
+            val userId = binding.userFavoriteNumEt.text.toString()
             val sampleUser = SampleUser(name, userId)
             lifecycleScope.launch {
                 addUser(sampleUser)
             }
         }
-
-        setRecyclerView()
-
-        lifecycleScope.launch {
-            getAllUsers()
-        }
     }
 
     private fun setRecyclerView() {
-//        adapter =  FireStoreSampleUserListAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@FireStoreSampleActivity)
-//        adapter.
+
     }
 
     private suspend fun addUser(sampleUser: SampleUser) {
@@ -61,7 +56,7 @@ class FireStoreSampleActivity : AppCompatActivity() {
                 is State.Success -> {
                     binding.progressLayout.isVisible = false
                     binding.userNameTv.text = state.data?.name
-                    binding.userIdTv.text = state.data?.id
+                    binding.userIdTv.text = state.data?.favoriteNum
                     showToast("登録が成功しました")
                 }
                 is State.Failed -> {
@@ -69,9 +64,7 @@ class FireStoreSampleActivity : AppCompatActivity() {
                     AlertDialog.Builder(this@FireStoreSampleActivity)
                         .setTitle("投稿に失敗しました")
                         .setMessage("通信状況を確認してください")
-                        .setPositiveButton("OK") { dialog, which ->
-                            // TODO:Yesが押された時の挙動
-                        }
+                        .setPositiveButton("OK") { _, _ -> }
                         .show()
                 }
             }
@@ -85,21 +78,18 @@ class FireStoreSampleActivity : AppCompatActivity() {
                     binding.progressLayout.isVisible = true
                 }
                 is State.Success -> {
-
-
+                    binding.recyclerView.adapter = FireStoreSampleUserListAdapter(state.data)
+                    binding.recyclerView.layoutManager = LinearLayoutManager(this@FireStoreSampleActivity)
                     binding.progressLayout.isVisible = false
                 }
-
                 is State.Failed -> {
-//                    binding.progressLayout.isVisible = false
-//                    AlertDialog.Builder(this@FireStoreSampleActivity)
-//                        .setTitle("投稿に失敗しました")
-//                        .setMessage("通信状況を確認してください")
-//                        .setPositiveButton("OK") { dialog, which ->
-//                            // TODO:Yesが押された時の挙動
-//                        }
-//                        .sho
-
+                    AlertDialog.Builder(this@FireStoreSampleActivity)
+                        .setTitle("投稿に失敗しました")
+                        .setMessage("通信状況を確認してください")
+                        .setPositiveButton("OK") { _, _ ->
+                            // TODO:Yesが押された時の挙動
+                        }
+                    binding.progressLayout.isVisible = false
                 }
             }
         }
